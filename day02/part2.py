@@ -4,7 +4,7 @@ import argparse
 import os.path
 
 import pytest
-from sympy import primefactors
+import sympy
 
 import support
 
@@ -13,7 +13,6 @@ INPUT_TXT = os.path.join(os.path.dirname(__file__), 'input.txt')
 
 def compute(s: str) -> int:
     total = 0
-    seen = set()
     lines = s.splitlines()
     for line in lines:
         ranges = line.split(',')
@@ -22,28 +21,16 @@ def compute(s: str) -> int:
             start, end = int(start_s), int(end_s)
             for n in range(start, end + 1):
                 n_s = str(n)
-                prime_factors = [1] + primefactors(len(n_s))
-                for factor in prime_factors:
-                    if factor != n:
-                        if n in seen:
-                            break
-                        power = factor
-                        while power < len(n_s):
-                            if len(n_s) % power == 0:
-                                parts = [
-                                    ''.join(chunk) for chunk in zip(
-                                        *[iter(n_s)] * power,
-                                    )
-                                ]
-                                if len(parts) > 1 and len(set(parts)) == 1:
-                                    if n not in seen:
-                                        total += n
-                                        seen.add(n)
-                                    else:
-                                        break
-                            if power == 1:
-                                break
-                            power *= factor
+                divisors = sympy.divisors(len(n_s))
+                for divisor in divisors:
+                    parts = [
+                        ''.join(chunk) for chunk in zip(
+                            *[iter(n_s)] * divisor,
+                        )
+                    ]
+                    if len(parts) > 1 and len(set(parts)) == 1:
+                        total += n
+                        break
     return total
 
 
