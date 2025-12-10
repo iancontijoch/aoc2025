@@ -1,0 +1,10 @@
+range(211, 220) (a1, b1)
+range(214, 216) (a2, b2)
+
+
+other fully embedded in rng
+
+== part 2 ==
+> 98298 ms
+answer: 339668510830757
+That's the right answer!
