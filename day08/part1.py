@@ -55,9 +55,7 @@ def compute(s: str, size: int = 10) -> int:
 
     for (a, b) in dists[:size]:
         a_idx, b_idx = find_graph(a, graphs), find_graph(b, graphs)
-        if (a_idx, b_idx) == (-1, -1):
-            graphs.append({a, b})
-        elif a_idx != -1 and b_idx == -1:
+        if a_idx != -1 and b_idx == -1:
             graphs[a_idx].add(b)
         elif a_idx == -1 and b_idx != -1:
             graphs[b_idx].add(a)
