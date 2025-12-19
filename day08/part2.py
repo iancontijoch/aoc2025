@@ -11,7 +11,6 @@ import pytest
 import support
 
 INPUT_TXT = os.path.join(os.path.dirname(__file__), 'input.txt')
-SIZE = 1000
 
 
 class Point(NamedTuple):
@@ -23,7 +22,7 @@ class Point(NamedTuple):
         return str((self.x, self.y, self.z))
 
 
-def compute(s: str, size: int = 10) -> int:
+def compute(s: str) -> int:
     lines = s.splitlines()
     points = set()
     graphs: list[set[Point]] = []
@@ -53,7 +52,10 @@ def compute(s: str, size: int = 10) -> int:
                 return i
         return -1
 
-    for (a, b) in dists[:size]:
+    def connected(graphs: list[set[Point]]) -> bool:
+        return len([g for g in graphs if len(g) != 0]) == 1
+
+    for (a, b) in dists:
         a_idx, b_idx = find_graph(a, graphs), find_graph(b, graphs)
         if (a_idx, b_idx) == (-1, -1):
             graphs.append({a, b})
@@ -67,7 +69,11 @@ def compute(s: str, size: int = 10) -> int:
                 graphs[b_idx].clear()
         else:
             raise NotImplementedError
-    return math.prod(sorted(len(g) for g in graphs)[-3:])
+
+        if connected(graphs):
+            return a.x * b.x
+
+    return 0
 
 
 INPUT_S = '''\
@@ -92,7 +98,7 @@ INPUT_S = '''\
 984,92,344
 425,690,689
 '''
-EXPECTED = 40
+EXPECTED = 25272
 
 
 @pytest.mark.parametrize(
@@ -102,7 +108,7 @@ EXPECTED = 40
     ),
 )
 def test(input_s: str, expected: int) -> None:
-    assert compute(input_s, 10) == expected
+    assert compute(input_s) == expected
 
 
 def main() -> int:
@@ -111,7 +117,7 @@ def main() -> int:
     args = parser.parse_args()
 
     with open(args.data_file) as f, support.timing():
-        print(compute(f.read(), SIZE))
+        print(compute(f.read()))
 
     return 0
 
