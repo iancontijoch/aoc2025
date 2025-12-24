@@ -1,0 +1,40 @@
+== part 2 ==
+> 4322 ms
+answer: 4583207265
+That's not the right answer; your answer is too high.
+
+
+answer: 4581613290
+That's not the right answer; your answer is too high.
+
+answer: 303789489
+That's not the right answer; your answer is too low.
+
+
+answer: 377637900
+That's not the right answer.
+
+answer: 1428800256
+That's not the right answer.
+
+answer: 1596549422
+That's not the right answer.
+
+answer: 19303900
+That's not the right answer.
+
+answer: 1400081872
+That's not the right answer.
+
+answer: 1510545727
+That's not the right answer.
+
+..............
+.......#XXX#..  seg v anchor=1, rng=range(1, 4) | seg v anchor = 3 rng(1, 3)
+.......X...X..
+..#XXXX#...X..  (anchor= 3, rng=range(2,6))
+..X........X..  (4, 4)
+..#XXXXXX#.X..
+.........X.X..
+.........#X#..
+..............
