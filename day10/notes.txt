@@ -30,7 +30,61 @@ You could press (1,3) once, (2,3) once, and (0,1) twice, a total of 4 button pre
 [.#.#]
 [.##.]
 
+(1, 3), (3), (4, 1), (3)
+[...#.] (3)
+[.#.##] (4, 1)
+[.#..#] (3)
+[...##] (1, 3)
+
+(1, 3), (4, 1)
+[.#.#.]
+[...##]
+
 
 
 
 You could press all of the buttons except (1,3) once each, a total of 5 button presses.
+
+
+[.##.] (3) (1,3) (2) (2,3) (0,2) (0,1) {3,5,4,7}
+
+Configuring the first machine's counters requires a minimum of 10 button presses. One way to do this is by pressing (3) once, (1,3) three times, (2,3) three times, (0,2) once, and (0,1) twice.
+
+{3,5,4,7}
+
+{0001}      {0001} * 1 = 1
+{0303}      {0101} * 3 = 303
+{0033}      {0011} * 3 = 33
+{1010}      {1010} * 1 = 1010
+{2200}      {1100} * 2 = 2200
+-------     ------      ------
+{3547}      {3547}      3210 + 337 = 3547
+
+
+== part 2 ==
+answer: 2969
+That's not the right answer; your answer is too low.
+
+
+
+x0  [0, 0, 0, 1]
+x1  [0, 1, 0, 1]
+x2  [0, 0, 1, 0]
+x3  [0, 0, 1, 1]
+x4  [1, 0, 1, 0]
+x5  [1, 1, 0, 0]
+
+[0, 0, 1, 0, 929, 844]
+
+3547
+
+[0   0   1 0]
+[929 0 929 0]
+[844 844 0 0]
+--------------
+[929 0  930 0]
+[844 844 0 0 ]
+
+
+answer: 16474
+That's the right answer!
